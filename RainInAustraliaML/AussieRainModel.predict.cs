@@ -1,7 +1,6 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
 using RainInAustraliaLib.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainInAustraliaML
 {
