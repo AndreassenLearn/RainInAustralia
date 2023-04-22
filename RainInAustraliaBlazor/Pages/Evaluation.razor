@@ -1,0 +1,157 @@
+﻿@page "/evaluation"
+@using CsvHelper;
+@using RainInAustraliaLib.Extensions
+@using RainInAustraliaLib.Models;
+@using RainInAustraliaBlazor.Services
+@using System.Globalization;
+@inject IAussieWeatherService AussieWeatherService
+@inject IWebHostEnvironment Environment
+
+<PageTitle>Evaluation</PageTitle>
+
+<h1>Evaluation</h1>
+
+<InputFile OnChange="@LoadFile" class="mb-2 w-100"/>
+<br />
+<button class="btn btn-primary" @onclick="RunTest">Start</button>
+
+<hr />
+
+<h3>Summary</h3>
+<div class="row">
+    <div class="col col-3">
+        <b>Loss:</b>
+    </div>
+    <div class="col col-9">
+        @(float.Round(loss * 100, 2))% [@loss]
+    </div>
+</div>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sample Parameters</th>
+            <th scope="col">Prediction</th>
+            <th scope="col">Probability</th>
+            <th scope="col">Success</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var testResult in testResults)
+        {
+            <tr>
+                <th scope="row">@(testResults.IndexOf(testResult) + 1)</th>
+                <td>
+                    <RainInAustraliaBlazor.Components.Collapsable Collapsed="true">
+                        <ChildContent>
+                            <b>@nameof(AussieWeatherInputTestDTO.Date):</b> @testResult.Input.Date.ToSampleString()<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Location):</b> @testResult.Input.Location<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.MinTemp):</b> @testResult.Input.MinTemp.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.MaxTemp):</b> @testResult.Input.MaxTemp.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Rainfall):</b> @testResult.Input.Rainfall.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindGustDir):</b> @testResult.Input.WindGustDir<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindGustSpeed):</b> @testResult.Input.WindGustSpeed<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindDir9am):</b> @testResult.Input.WindDir9am<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindDir3pm):</b> @testResult.Input.WindDir3pm<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindSpeed9am):</b> @testResult.Input.WindSpeed9am<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.WindSpeed3pm):</b> @testResult.Input.WindSpeed3pm<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Humidity9am):</b> @testResult.Input.Humidity9am<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Humidity3pm):</b> @testResult.Input.Humidity3pm<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Pressure9am):</b> @testResult.Input.Pressure9am.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Pressure3pm):</b> @testResult.Input.Pressure3pm.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Temp9am):</b> @testResult.Input.Temp9am.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Temp3pm):</b> @testResult.Input.Temp3pm.ToString("0.0", CultureInfo.InvariantCulture)<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.RainToday):</b> @testResult.Input.RainToday<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.RainTomorrow):</b> @testResult.Input.RainTomorrow<br />
+                        </ChildContent>
+                    </RainInAustraliaBlazor.Components.Collapsable>
+                </td>
+                <td>
+                    @if (testResult.Prediction)
+                    {
+                        <p>Rain</p>
+                    }
+                    else
+                    {
+                        <p>No rain</p>
+                    }
+                </td>
+                <td>@(float.Round(testResult.Probability * 100, 2))% [@testResult.Probability]</td>
+                <td>
+                    @if (testResult.Success)
+                    {
+                        <span class="oi oi-circle-check" style="color:green" />
+                    }
+                    else
+                    {
+                        <span class="oi oi-circle-x" style="color:red" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private string path = String.Empty;
+
+    private List<RainTomorrowTestResult> testResults = new();
+    private float loss;
+
+    private void DoSummary()
+    {
+        float totalFails = testResults.Where(r => !r.Success).Count();
+        loss = totalFails / (float)testResults.Count;
+    }
+
+    private void RunTest()
+    {
+        try
+        {
+            // Clear previous results.
+            testResults.Clear();
+
+            // Read as CSV file.
+            using (var reader = new StreamReader(path))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
+            {
+                AussieWeatherInputCSV record = new();
+                var records = csv.EnumerateRecords(record);
+                foreach (var r in records)
+                {
+                    var result = AussieWeatherService.RainTomorrowTest(r);
+                    testResults.Add(result);
+                }
+            }
+
+            // Calculate loss etc.
+            DoSummary();
+        }
+        catch (Exception ex)
+        {
+            // TODO: Handle errors.
+        }
+    }
+
+    private async Task LoadFile(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            // Save file.
+            var trustedFileNameForFileStorage = Path.GetRandomFileName();
+            path = Path.Combine(Environment.ContentRootPath, Environment.EnvironmentName, "unsafe_uploads", trustedFileNameForFileStorage);
+
+            await using FileStream fs = new(path, FileMode.Create);
+            await e.File.OpenReadStream().CopyToAsync(fs);
+
+            fs.Dispose(); // Release process from file.
+        }
+        catch (Exception ex)
+        {
+            // TODO: Handle errors.
+        }
+    }
+}

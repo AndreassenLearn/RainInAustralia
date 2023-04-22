@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="2.0.0" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup Label="AussieRainModel">
+    <None Include="AussieRainModel.consumption.cs">
+      <DependentUpon>AussieRainModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="AussieRainModel.mlnet">
+      <DependentUpon>AussieRainModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AussieRainModel.training.cs">
+      <DependentUpon>AussieRainModel.mbconfig</DependentUpon>
+    </None>
+  </ItemGroup>
+</Project>

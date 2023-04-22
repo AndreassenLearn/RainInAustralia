@@ -1,0 +1,27 @@
+﻿<div>
+    @if (Collapsed)
+    {
+        <button class="btn btn-sm" @onclick="@Toggle"><span class="oi oi-eye" /></button>
+    }
+    else
+    {
+        <button class="btn btn-sm" @onclick="@Toggle"><span class="oi oi-caret-top" /></button>
+    }
+</div>
+
+@if (!Collapsed)
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+    [Parameter]
+    public bool Collapsed { get; set; }
+
+    void Toggle()
+    {
+        Collapsed = !Collapsed;
+    }
+}

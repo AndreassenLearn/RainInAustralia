@@ -1,0 +1,876 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\vs\\RainInAustralia\\Data\\weather-train.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Date",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Location",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "MinTemp",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "MaxTemp",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Rainfall",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindGustDir",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindGustSpeed",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindDir9am",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindDir3pm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindSpeed9am",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "WindSpeed3pm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Humidity9am",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Humidity3pm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Pressure9am",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Pressure3pm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Temp9am",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Temp3pm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "RainToday",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "RainTomorrow",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LightGbmBinary",
+        "Score": 0.85492537313432837,
+        "RuntimeInSeconds": 23.185,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * e9",
+          "e0": {
+            "OutputColumnNames": [
+              "Location"
+            ],
+            "InputColumnNames": [
+              "Location"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ],
+            "InputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ]
+          },
+          "e2": {
+            "OutputColumnNames": [
+              "RainToday"
+            ],
+            "InputColumnNames": [
+              "RainToday"
+            ]
+          },
+          "e3": {
+            "InputColumnName": "WindGustDir",
+            "OutputColumnName": "WindGustDir"
+          },
+          "e4": {
+            "InputColumnName": "WindDir9am",
+            "OutputColumnName": "WindDir9am"
+          },
+          "e5": {
+            "InputColumnName": "WindDir3pm",
+            "OutputColumnName": "WindDir3pm"
+          },
+          "e6": {
+            "InputColumnNames": [
+              "Location",
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm",
+              "RainToday",
+              "WindGustDir",
+              "WindDir9am",
+              "WindDir3pm"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e9": {
+            "NumberOfLeaves": 7928,
+            "MinimumExampleCountPerLeaf": 23,
+            "LearningRate": 0.10475501273234984,
+            "NumberOfTrees": 4326,
+            "SubsampleFraction": 0.13991582361314528,
+            "MaximumBinCountPerFeature": 233,
+            "FeatureFraction": 0.772247637950334,
+            "L1Regularization": 4.3932507030971522E-10,
+            "L2Regularization": 0.99999977667298645,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.85373134328358213,
+        "RuntimeInSeconds": 42.394,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * e7",
+          "e0": {
+            "OutputColumnNames": [
+              "Location"
+            ],
+            "InputColumnNames": [
+              "Location"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ],
+            "InputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ]
+          },
+          "e2": {
+            "OutputColumnNames": [
+              "RainToday"
+            ],
+            "InputColumnNames": [
+              "RainToday"
+            ]
+          },
+          "e3": {
+            "InputColumnName": "WindGustDir",
+            "OutputColumnName": "WindGustDir"
+          },
+          "e4": {
+            "InputColumnName": "WindDir9am",
+            "OutputColumnName": "WindDir9am"
+          },
+          "e5": {
+            "InputColumnName": "WindDir3pm",
+            "OutputColumnName": "WindDir3pm"
+          },
+          "e6": {
+            "InputColumnNames": [
+              "Location",
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm",
+              "RainToday",
+              "WindGustDir",
+              "WindDir9am",
+              "WindDir3pm"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 106,
+            "MinimumExampleCountPerLeaf": 2,
+            "NumberOfTrees": 3162,
+            "MaximumBinCountPerFeature": 638,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.99999977667298645,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionBinary",
+        "Score": 0.85194029850746267,
+        "RuntimeInSeconds": 0.927,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "Location"
+            ],
+            "InputColumnNames": [
+              "Location"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ],
+            "InputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ]
+          },
+          "e10": {
+            "L1Regularization": 0.03125,
+            "L2Regularization": 8.402603,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e2": {
+            "OutputColumnNames": [
+              "RainToday"
+            ],
+            "InputColumnNames": [
+              "RainToday"
+            ]
+          },
+          "e3": {
+            "InputColumnName": "WindGustDir",
+            "OutputColumnName": "WindGustDir"
+          },
+          "e4": {
+            "InputColumnName": "WindDir9am",
+            "OutputColumnName": "WindDir9am"
+          },
+          "e5": {
+            "InputColumnName": "WindDir3pm",
+            "OutputColumnName": "WindDir3pm"
+          },
+          "e6": {
+            "InputColumnNames": [
+              "Location",
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm",
+              "RainToday",
+              "WindGustDir",
+              "WindDir9am",
+              "WindDir3pm"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.85134328358208955,
+        "RuntimeInSeconds": 0.677,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * e7",
+          "e0": {
+            "OutputColumnNames": [
+              "Location"
+            ],
+            "InputColumnNames": [
+              "Location"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ],
+            "InputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ]
+          },
+          "e2": {
+            "OutputColumnNames": [
+              "RainToday"
+            ],
+            "InputColumnNames": [
+              "RainToday"
+            ]
+          },
+          "e3": {
+            "InputColumnName": "WindGustDir",
+            "OutputColumnName": "WindGustDir"
+          },
+          "e4": {
+            "InputColumnName": "WindDir9am",
+            "OutputColumnName": "WindDir9am"
+          },
+          "e5": {
+            "InputColumnName": "WindDir3pm",
+            "OutputColumnName": "WindDir3pm"
+          },
+          "e6": {
+            "InputColumnNames": [
+              "Location",
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm",
+              "RainToday",
+              "WindGustDir",
+              "WindDir9am",
+              "WindDir3pm"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 59,
+            "NumberOfTrees": 130,
+            "MaximumBinCountPerFeature": 1023,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.18678384072373602,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LightGbmBinary",
+        "Score": 0.85074626865671643,
+        "RuntimeInSeconds": 2.269,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * e9",
+          "e0": {
+            "OutputColumnNames": [
+              "Location"
+            ],
+            "InputColumnNames": [
+              "Location"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ],
+            "InputColumnNames": [
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm"
+            ]
+          },
+          "e2": {
+            "OutputColumnNames": [
+              "RainToday"
+            ],
+            "InputColumnNames": [
+              "RainToday"
+            ]
+          },
+          "e3": {
+            "InputColumnName": "WindGustDir",
+            "OutputColumnName": "WindGustDir"
+          },
+          "e4": {
+            "InputColumnName": "WindDir9am",
+            "OutputColumnName": "WindDir9am"
+          },
+          "e5": {
+            "InputColumnName": "WindDir3pm",
+            "OutputColumnName": "WindDir3pm"
+          },
+          "e6": {
+            "InputColumnNames": [
+              "Location",
+              "Date",
+              "MinTemp",
+              "MaxTemp",
+              "Rainfall",
+              "WindGustSpeed",
+              "WindSpeed9am",
+              "WindSpeed3pm",
+              "Humidity9am",
+              "Humidity3pm",
+              "Pressure9am",
+              "Pressure3pm",
+              "Temp9am",
+              "Temp3pm",
+              "RainToday",
+              "WindGustDir",
+              "WindDir9am",
+              "WindDir3pm"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e9": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 25,
+            "LearningRate": 0.058307362105879168,
+            "NumberOfTrees": 1773,
+            "SubsampleFraction": 0.99999977667298645,
+            "MaximumBinCountPerFeature": 465,
+            "FeatureFraction": 0.99999999,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 0.99999977667298645,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "RainTomorrow",
+            "FeatureColumnName": "Features"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
+      "e2": "ConvertType",
+      "e3": "FeaturizeText",
+      "e4": "FeaturizeText",
+      "e5": "FeaturizeText",
+      "e6": "Concatenate",
+      "e7": "FastTreeBinary",
+      "e8": "FastForestBinary",
+      "e9": "LightGbmBinary",
+      "e10": "LbfgsLogisticRegressionBinary",
+      "e11": "SdcaLogisticRegressionBinary"
+    },
+    "Schema": "e0 * e1 * e2 * e3 * e4 * e5 * e6 * (e7 + e8 + e9 + e10 + e11)",
+    "MetricName": "Accuracy",
+    "ModelFilePath": "C:\\vs\\RainInAustralia\\RainInAustraliaModel\\AussieRainModel.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 4,
+  "TrainingOption": {
+    "Version": 0,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 600,
+    "LabelColumn": "RainTomorrow",
+    "Seed": 0
+  }
+}
