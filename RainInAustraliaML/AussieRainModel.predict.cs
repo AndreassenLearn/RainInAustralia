@@ -13,7 +13,7 @@ namespace RainInAustraliaML
         public class ModelInput
         {
             [LoadColumn(0)]
-            public float Date { get; set; }
+            public float Day { get; set; }
 
             [LoadColumn(1)]
             public string Location { get; set; }
@@ -158,7 +158,7 @@ namespace RainInAustraliaML
 
         public static ModelInput CreateInput(AussieWeatherInputDTO dto) => new()
         {
-            Date = dto.Date.Month,
+            Day = dto.Date.DayOfYear,
             Location = dto.Location,
             MinTemp = dto.MinTemp,
             MaxTemp = dto.MaxTemp,
@@ -180,7 +180,7 @@ namespace RainInAustraliaML
 
         public static ModelInput CreateInput(AussieWeatherInputCSV csv) => new()
         {
-            Date = csv.Date,
+            Day = csv.Date.DayOfYear,
             Location = csv.Location,
             MinTemp = csv.MinTemp,
             MaxTemp = csv.MaxTemp,

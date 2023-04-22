@@ -10,10 +10,12 @@ namespace RainInAustraliaML
         private const string _dataPath =  @"C:\vs\RainInAustralia\Data\weather-train.csv";
         private const string _modelPath = @"C:\vs\RainInAustralia\RainInAustraliaML\AussieRainModel.mlnet";
 
-        private const uint _trainTimeSec = 600;
-
         private const char _retrainSeparatorChar = ',';
         private const bool _retrainHasHeader =  true;
+
+        private const uint _trainTimeSec = 600;
+
+        private const string _featuresColumnName = "Features";
 
         /// <summary>
         /// Train a new model with the provided dataset.
@@ -112,7 +114,7 @@ namespace RainInAustraliaML
         /// <param name="data">IDataView used to train the model.</param>
         /// <returns>Data process configuration, i.e. the pipeline.</returns>
         public static SweepablePipeline BuildPipeline(MLContext mlContext, IDataView data) => 
-            mlContext.Auto().Featurizer(data,
+            mlContext.Auto().Featurizer(data, _featuresColumnName,
                 //catelogicalColumns: new[]
                 //{
                 //    nameof(ModelInput.Location),

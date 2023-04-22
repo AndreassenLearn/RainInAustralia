@@ -2,8 +2,7 @@
 {
     public class AussieWeatherInputCSV
     {
-        //public DateOnly Date { get; set; }
-        public int Date { get; set; }
+        public DateOnly Date { get; set; }
         public string Location { get; set; }
         public float MinTemp { get; set; }
         public float MaxTemp { get; set; }

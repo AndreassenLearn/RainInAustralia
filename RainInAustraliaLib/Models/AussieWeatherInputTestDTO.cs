@@ -9,8 +9,7 @@ namespace RainInAustraliaLib.Models
         public AussieWeatherInputTestDTO(AussieWeatherInputCSV parameters)
             : base()
         {
-            //Date = parameters.Date;
-            Date = new DateOnly(9999, parameters.Date, 1);
+            Date = parameters.Date;
             Location = parameters.Location;
             MinTemp = parameters.MinTemp;
             MaxTemp = parameters.MaxTemp;
