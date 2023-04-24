@@ -11,6 +11,8 @@
 
 <h1>Evaluation</h1>
 
+<MessageBox Title="Choose a CSV file and hit the 'Start' button to evaluate the current ML model." Text="The results will first show when all predictions have been made." />
+
 <InputFile OnChange="@LoadFile" class="mb-2 w-100"/>
 <br />
 <button class="btn btn-primary" @onclick="RunTest">Start</button>

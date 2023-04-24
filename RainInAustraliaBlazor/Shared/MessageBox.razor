@@ -1,0 +1,16 @@
+﻿<div class="alert alert-secondary mt-4">
+    <span class="@IconClass me-2" aria-hidden="true"></span>
+    <strong>@Title</strong>
+    <span>@Text</span>
+</div>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public string? IconClass { get; set; } = "oi oi-bell";
+}
