@@ -26,8 +26,8 @@ namespace RainInAustraliaLib.Models
             Pressure3pm = parameters.Pressure3pm;
             Temp9am = parameters.Temp9am;
             Temp3pm = parameters.Temp3pm;
-            RainToday = parameters.RainToday.ToSampleBool();
-            RainTomorrow = parameters.RainTomorrow.ToSampleBool();
+            RainToday = parameters.RainToday == "true";
+            RainTomorrow = parameters.RainTomorrow == "true";
         }
 
         public bool RainTomorrow { get; set; }

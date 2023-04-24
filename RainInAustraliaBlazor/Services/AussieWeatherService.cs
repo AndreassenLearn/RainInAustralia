@@ -13,7 +13,7 @@ namespace RainInAustraliaBlazor.Services
 
             return new RainTomorrowResult()
             {
-                Prediction = result.RainTomorrow,
+                Prediction = result.PredictedLabel,
                 Probability = result.Probability
             };
         }
@@ -34,7 +34,7 @@ namespace RainInAustraliaBlazor.Services
             return new RainTomorrowTestResult()
             {
                 Input = new AussieWeatherInputTestDTO(testParameters),
-                Prediction = result.RainTomorrow,
+                Prediction = result.PredictedLabel,
                 Probability = (result.Score < 0 ? 1 - result.Probability : result.Probability)
             };
         }

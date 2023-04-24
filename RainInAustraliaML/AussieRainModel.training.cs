@@ -45,7 +45,7 @@ namespace RainInAustraliaML
             // Train model.
             var experiment = mlContext.Auto().CreateExperiment()
                 .SetPipeline(pipeline)
-                .SetBinaryClassificationMetric(BinaryClassificationMetric.Accuracy, nameof(ModelInput.RainTomorrow), nameof(ModelOutput.RainTomorrow))
+                .SetBinaryClassificationMetric(BinaryClassificationMetric.Accuracy, nameof(ModelInput.RainTomorrow), nameof(ModelOutput.PredictedLabel))
                 .SetTrainingTimeInSeconds(_trainTimeSec)
                 .SetDataset(split.TrainSet, split.TestSet);
 
@@ -115,27 +115,35 @@ namespace RainInAustraliaML
         /// <returns>Data process configuration, i.e. the pipeline.</returns>
         public static SweepablePipeline BuildPipeline(MLContext mlContext, IDataView data) => 
             mlContext.Auto().Featurizer(data, _featuresColumnName,
-                //catelogicalColumns: new[]
-                //{
-                //    nameof(ModelInput.Location),
-                //    nameof(ModelInput.RainToday)
-                //},
-                //numericColumns: new[]
-                //{
-                //    nameof(ModelInput.Date),
-                //    nameof(ModelInput.MinTemp),
-                //    nameof(ModelInput.MaxTemp),
-                //    nameof(ModelInput.Rainfall),
-                //    nameof(ModelInput.WindGustSpeed),
-                //    nameof(ModelInput.WindSpeed9am),
-                //    nameof(ModelInput.WindSpeed3pm),
-                //    nameof(ModelInput.Humidity9am),
-                //    nameof(ModelInput.Humidity3pm),
-                //    nameof(ModelInput.Pressure9am),
-                //    nameof(ModelInput.Pressure3pm),
-                //    nameof(ModelInput.Temp9am),
-                //    nameof(ModelInput.Temp3pm),
-                //},
+                catelogicalColumns: new[]
+                {
+                    nameof(ModelInput.Location),
+                    nameof(ModelInput.RainToday)
+                },
+                numericColumns: new[]
+                {
+                    //nameof(ModelInput.Day),
+                    nameof(ModelInput.DaySin),
+                    nameof(ModelInput.DayCos),
+                    nameof(ModelInput.MinTemp),
+                    nameof(ModelInput.MaxTemp),
+                    nameof(ModelInput.Rainfall),
+                    nameof(ModelInput.WindGustDirSin),
+                    nameof(ModelInput.WindGustDirCos),
+                    nameof(ModelInput.WindGustSpeed),
+                    nameof(ModelInput.WindDir9amSin),
+                    nameof(ModelInput.WindDir9amCos),
+                    nameof(ModelInput.WindDir3pmSin),
+                    nameof(ModelInput.WindDir3pmCos),
+                    nameof(ModelInput.WindSpeed9am),
+                    nameof(ModelInput.WindSpeed3pm),
+                    nameof(ModelInput.Humidity9am),
+                    nameof(ModelInput.Humidity3pm),
+                    nameof(ModelInput.Pressure9am),
+                    nameof(ModelInput.Pressure3pm),
+                    nameof(ModelInput.Temp9am),
+                    nameof(ModelInput.Temp3pm),
+                },
                 //textColumns: new[]
                 //{
                 //    nameof(ModelInput.WindGustDir),
@@ -146,6 +154,7 @@ namespace RainInAustraliaML
                 {
                     nameof(ModelInput.RainTomorrow)
                 })
-            .Append(mlContext.Auto().BinaryClassification(labelColumnName: nameof(ModelInput.RainTomorrow), featureColumnName: "Features"));
+            .Append(mlContext.Transforms.NormalizeMinMax(_featuresColumnName, _featuresColumnName))
+            .Append(mlContext.Auto().BinaryClassification(labelColumnName: nameof(ModelInput.RainTomorrow), featureColumnName: _featuresColumnName));
     }
  }
