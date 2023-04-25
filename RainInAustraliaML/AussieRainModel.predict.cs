@@ -1,5 +1,6 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
+using RainInAustraliaLib.Extensions;
 using RainInAustraliaLib.Models;
 using System.Globalization;
 
@@ -135,8 +136,8 @@ namespace RainInAustraliaML
                 Pressure3pm = csv.Pressure3pm,
                 Temp9am = csv.Temp9am,
                 Temp3pm = csv.Temp3pm,
-                RainToday = csv.RainToday == "true",
-                RainTomorrow = csv.RainTomorrow == "true"
+                RainToday = csv.RainToday.ToBool(),
+                RainTomorrow = csv.RainTomorrow.ToBool()
             };
         }
 

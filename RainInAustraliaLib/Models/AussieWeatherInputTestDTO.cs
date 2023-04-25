@@ -1,4 +1,6 @@
-﻿namespace RainInAustraliaLib.Models
+﻿using RainInAustraliaLib.Extensions;
+
+namespace RainInAustraliaLib.Models
 {
     public class AussieWeatherInputTestDTO : AussieWeatherInputDTO
     {
@@ -24,8 +26,8 @@
             Pressure3pm = parameters.Pressure3pm;
             Temp9am = parameters.Temp9am;
             Temp3pm = parameters.Temp3pm;
-            RainToday = parameters.RainToday == "true";
-            RainTomorrow = parameters.RainTomorrow == "true";
+            RainToday = parameters.RainToday.ToBool();
+            RainTomorrow = parameters.RainTomorrow.ToBool();
         }
 
         public bool RainTomorrow { get; set; }
