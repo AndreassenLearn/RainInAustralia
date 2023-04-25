@@ -7,6 +7,7 @@
     {
         <button class="btn btn-sm" @onclick="@Toggle"><span class="oi oi-caret-top" /></button>
     }
+    <span>@Text</span>
 </div>
 
 @if (!Collapsed)
@@ -19,6 +20,8 @@
     public RenderFragment ChildContent { get; set; } = default!;
     [Parameter]
     public bool Collapsed { get; set; }
+    [Parameter]
+    public string? Text { get; set; }
 
     void Toggle()
     {
