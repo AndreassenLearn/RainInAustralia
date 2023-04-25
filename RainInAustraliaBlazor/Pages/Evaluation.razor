@@ -1,6 +1,5 @@
 ﻿@page "/evaluation"
 @using CsvHelper;
-@using RainInAustraliaLib.Extensions
 @using RainInAustraliaLib.Models;
 @using RainInAustraliaBlazor.Services
 @using System.Globalization;
@@ -49,7 +48,7 @@
                 <td>
                     <RainInAustraliaBlazor.Shared.Collapsable Collapsed="true" Text="@testResult.Input.Location">
                         <ChildContent>
-                            <b>@nameof(AussieWeatherInputTestDTO.Date):</b> @testResult.Input.Date.ToSampleString()<br />
+                            <b>@nameof(AussieWeatherInputTestDTO.Date):</b> @testResult.Input.Date.ToString("yyyy-MM-dd")<br />
                             <b>@nameof(AussieWeatherInputTestDTO.Location):</b> @testResult.Input.Location<br />
                             <b>@nameof(AussieWeatherInputTestDTO.MinTemp):</b> @testResult.Input.MinTemp.ToString("0.0", CultureInfo.InvariantCulture)<br />
                             <b>@nameof(AussieWeatherInputTestDTO.MaxTemp):</b> @testResult.Input.MaxTemp.ToString("0.0", CultureInfo.InvariantCulture)<br />

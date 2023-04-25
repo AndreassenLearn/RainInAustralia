@@ -1,6 +1,4 @@
-﻿using RainInAustraliaLib.Extensions;
-
-namespace RainInAustraliaLib.Models
+﻿namespace RainInAustraliaLib.Models
 {
     public class AussieWeatherInputTestDTO : AussieWeatherInputDTO
     {
